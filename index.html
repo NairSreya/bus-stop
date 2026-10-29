@@ -1,0 +1,954 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Sreya Nair, head of marketing at HyprEarn. Trading competitions, campaigns and community for crypto products.">
+<meta property="og:title" content="Sreya Nair">
+<meta property="og:description" content="Head of marketing at HyprEarn. Waiting at the Inari-mae bus stop.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b1311">
+<title>Sreya Nair</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Mochiy+Pop+One&family=Zen+Maru+Gothic:wght@400;500;700&display=swap">
+<style>
+  /* Layout: a full-bleed ASCII night scene at the Inari-mae bus stop, the name sitting in the dark on the left;
+     the sections follow below like stops along a forest road, ending in a bus timetable. Single dark look by choice. */
+  :root {
+    --night: #0b1311;
+    --night-2: #111c19;
+    --ink: #e3e7d6;
+    --muted: #93a196;
+    --line: #22302b;
+    --moss: #86ad6f;
+    --lamp: #f0b45e;
+    --f-display: "Mochiy Pop One", "Zen Maru Gothic", system-ui, sans-serif;
+    --f-body: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", system-ui, sans-serif;
+    --f-mono: "DM Mono", ui-monospace, Menlo, Consolas, monospace;
+    color-scheme: dark;
+  }
+  html { background: var(--night); }
+  body {
+    background: var(--night);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--ink); text-decoration-color: color-mix(in srgb, var(--lamp) 70%, transparent); text-underline-offset: 3px; }
+  a:hover { color: var(--lamp); }
+  :focus-visible { outline: 2px solid var(--lamp); outline-offset: 3px; border-radius: 2px; }
+
+  /* ---------- hero ---------- */
+  .hero { display: grid; position: relative; border-bottom: 1px solid var(--line); }
+  .hero > .stage, .hero > .intro { grid-area: 1 / 1; }
+  .stage { position: relative; height: clamp(600px, 82vh, 740px); touch-action: pan-y; }
+  #scene { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .stage::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--night) 62%, transparent) 0%, color-mix(in srgb, var(--night) 38%, transparent) 26%, transparent 46%);
+  }
+  /* Text and scene are centered together as one group; --hero-left is set by the scene script. */
+  .intro {
+    position: relative; z-index: 1; align-self: center; justify-self: start;
+    padding-left: max(var(--hero-left, 48px), env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-top: 168px; padding-bottom: 48px; /* sits about 60px below center */
+    pointer-events: none;
+    display: flex; flex-direction: column; gap: 16px;
+    text-shadow: 0 1px 14px var(--night), 0 0 4px var(--night);
+  }
+  .intro button, .intro a { pointer-events: auto; }
+  h1 {
+    margin: 0; font-family: var(--f-display); font-weight: 400;
+    font-size: clamp(2.4rem, 5.2vw, 4.4rem); line-height: 1.08; letter-spacing: 0.01em; white-space: nowrap;
+  }
+  .bio { display: flex; flex-direction: column; gap: 0.5em; font-size: 1.05rem; line-height: 1.55; max-width: 22rem; }
+  .bio p { margin: 0; text-wrap: pretty; }
+  .bio a {
+    text-decoration: underline; text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in srgb, var(--ink) 45%, transparent); text-underline-offset: 4px;
+  }
+  .bio a:hover { color: var(--lamp); text-decoration-color: var(--lamp); }
+  .bio .links { margin-top: 0.35em; }
+  .bio .sep { color: var(--muted); padding-inline: 0.2em; }
+  .hint { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-top: 6px; }
+  .hint span { font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+  /* the two o's in "soot" glow white like the soot sprites' eyes in the scene */
+  .hint .soot-oo { display: inline-block; color: rgb(250, 248, 238); font-weight: 500; letter-spacing: -0.04em; animation: soot-hop 0.9s ease-in-out infinite; }
+  /* a quick hop and a short rest, like the soot sprites in the grass */
+  @keyframes soot-hop {
+    0%, 55%, 100% { transform: translateY(0); }
+    25% { transform: translateY(-4px); }
+    40% { transform: translateY(0); }
+    47% { transform: translateY(-1.5px); }
+  }
+  @media (prefers-reduced-motion: reduce) { .hint .soot-oo { animation: none; } }
+  .btn {
+    font: 500 14px/1 var(--f-body); color: var(--night); background: var(--lamp);
+    border: 0; border-radius: 999px; padding: 11px 18px; cursor: pointer;
+  }
+  .btn:hover { filter: brightness(1.08); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  .btn.ghost:hover { border-color: var(--lamp); color: var(--lamp); }
+
+  @media (max-width: 959px) {
+    .hero > .intro { grid-area: 1 / 1; }
+    .hero > .stage { grid-area: 2 / 1; }
+    .hero { grid-template-rows: auto auto; }
+    .intro {
+      grid-area: 1 / 1; max-width: none;
+      padding-left: max(16px, env(safe-area-inset-left, 0px));
+      padding-right: max(16px, env(safe-area-inset-right, 0px));
+      padding-block: 40px 4px;
+    }
+    .stage { grid-area: 2 / 1; height: 460px; }
+    .stage::after { background: linear-gradient(180deg, var(--night) 0%, transparent 14%); }
+  }
+
+  /* ---------- sections ---------- */
+  .wrap {
+    max-width: 980px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 72px;
+  }
+  section + section .wrap { padding-top: 0; }
+  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 28px; flex-wrap: wrap; }
+  h2 { margin: 0; font-family: var(--f-display); font-weight: 400; font-size: 1.8rem; line-height: 1.25; text-wrap: balance; }
+  .jp { font-family: var(--f-mono); font-size: 13px; color: var(--moss); letter-spacing: 0.06em; }
+  .about { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; align-items: start; }
+  .about p { margin: 0 0 0.6em; font-size: 1.05rem; }
+  .about p:last-child { margin-bottom: 0; }
+  .facts { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; border-left: 1px solid var(--line); padding-left: 24px; }
+  .facts li { display: grid; grid-template-columns: 7.5rem 1fr; gap: 12px; font-size: 15px; }
+  .facts b { font-family: var(--f-mono); font-weight: 400; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding-top: 3px; }
+
+  .note { font-family: var(--f-mono); font-size: 12px; color: var(--muted); margin: -12px 0 20px; }
+  .projects { list-style: none; margin: 0; padding: 0; }
+  .proj {
+    display: grid; grid-template-columns: 5rem 1fr auto; gap: 8px 28px; align-items: baseline;
+    padding-block: 22px; border-top: 1px solid var(--line);
+  }
+  .proj:last-child { border-bottom: 1px solid var(--line); }
+  .proj .yr { font-family: var(--f-mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .proj > div { min-width: 0; }
+  .proj h3 { margin: 0 0 4px; font-family: var(--f-display); font-size: 1.2rem; font-weight: 400; }
+  .proj p { margin: 0; color: var(--muted); max-width: 60ch; }
+  .tags { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+  .tags span { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--moss); border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px; white-space: nowrap; }
+
+  .stats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .stats li { display: flex; flex-direction: column; gap: 6px; padding: 24px 20px 24px 0; }
+  .stats li + li { border-left: 1px solid var(--line); padding-left: 20px; }
+  .stats b { font-family: var(--f-display); font-weight: 400; font-size: clamp(1.7rem, 3.4vw, 2.3rem); line-height: 1.1; color: var(--lamp); font-variant-numeric: tabular-nums; }
+  .stats span { font-size: 14px; line-height: 1.45; color: var(--muted); }
+  .more { margin: 24px 0 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
+  .more a { font-family: var(--f-mono); font-size: 14px; color: var(--lamp); }
+  .more span { font-size: 14px; color: var(--muted); }
+
+
+  .timetable { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .tt-box { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--night-2); }
+  .timetable th, .timetable td { text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  .timetable tr:last-child td { border-bottom: 0; }
+  .timetable th { font-family: var(--f-mono); font-weight: 400; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .timetable .t { font-family: var(--f-mono); color: var(--lamp); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .addr { font-family: var(--f-mono); user-select: all; }
+  .copy-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .copy-row .btn { padding: 7px 14px; font-size: 13px; }
+
+  footer { border-top: 1px solid var(--line); }
+  footer .wrap { padding-block: 32px 40px; display: grid; gap: 14px; }
+  #soots { margin: 0; font-family: var(--f-mono); font-size: 14px; line-height: 1.15; color: #6a726e; overflow: hidden; white-space: pre; }
+  #soots .e { color: var(--ink); }
+  #soots .s { color: #eaa0b9; }
+  .credit { margin: 0; font-size: 13px; color: var(--muted); }
+
+  @media (max-width: 720px) {
+    .about { grid-template-columns: 1fr; gap: 28px; }
+    .facts { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 20px; }
+    .proj { grid-template-columns: 1fr; }
+    .tags { justify-content: flex-start; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .stats li { padding: 20px 14px 20px 0; }
+    .stats li + li { padding-left: 14px; }
+    .stats li:nth-child(odd) { border-left: 0; padding-left: 0; }
+    .stats li:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .wrap { padding-block: 56px; }
+    /* timetable rows stack so the destination never runs off the side */
+    .timetable thead { display: none; }
+    .timetable, .timetable tbody { display: block; }
+    .timetable tr { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+    .timetable tr:last-child { border-bottom: 0; }
+    .timetable td { padding: 0; border: 0; }
+    .timetable td:last-child { grid-column: 1 / -1; overflow-wrap: anywhere; }
+  }
+</style>
+<style>html,body{margin:0}</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="stage" id="stage">
+    <canvas id="scene" aria-label="ASCII animation: Totoro, with a leaf on its head, naps under an umbrella at a rainy forest bus stop while soot sprites hop in the grass"></canvas>
+  </div>
+  <div class="intro">
+    <h1>Sreya Nair</h1>
+    <div class="bio">
+      <p>head of marketing @ <a href="https://x.com/HyprEarn" target="_blank" rel="noopener">hyprearn</a>, prev. gdsc blockchain co-lead</p>
+      <p class="links"><a href="https://x.com/sreyayaar" target="_blank" rel="noopener">x</a><span class="sep">/</span><a href="https://t.me/sreyayaar" target="_blank" rel="noopener">telegram</a><span class="sep">/</span><a href="https://www.linkedin.com/in/sreya-nair-06b089252/" target="_blank" rel="noopener">linkedin</a></p>
+    </div>
+    <div class="hint">
+      <button class="btn" id="roarBtn" type="button">Wake Totoro</button>
+      <button class="btn ghost" id="konBtn" type="button" hidden>Offer konpeito ★</button>
+      <span id="napHint">He's napping. Try to catch a s<span class="soot-oo">oo</span>t sprite.</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="numbers">
+    <div class="wrap">
+      <div class="sec-head"><h2>A few numbers I'm proud of</h2><span class="jp">かず</span></div>
+      <p class="note">all-time hyprearn and campaign results i've helped grow. a team effort, not mine alone.</p>
+      <ul class="stats">
+        <li><b>$60M+</b><span>Total trading volume through HyprEarn</span></li>
+        <li><b>$23.3M</b><span>Trading volume across 4 trading competitions</span></li>
+        <li><b>210+</b><span>Average daily traders</span></li>
+        <li><b>2.5M+</b><span>Campaign and affiliate impressions on X</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head"><h2>Currently focused on</h2><span class="jp">いま</span></div>
+      <ul class="projects">
+        <li class="proj">
+          <span class="yr">Oct 2026</span>
+          <div><h3><a href="https://x.com/HyprEarn/status/2114726305971519694" target="_blank" rel="noopener">HyprEarn &times; Decibel Halloween Challenge</a></h3><p>Our trading challenge with Decibel, live now. Giving it a spooky Halloween twist was my idea.</p></div>
+          <div class="tags"><span>Live</span><span>Campaign</span></div>
+        </li>
+        <li class="proj">
+          <span class="yr">Nov 2026</span>
+          <div><h3><a href="https://luma.com/58b4n6e6" target="_blank" rel="noopener">Perps &amp; Chai with HyprEarn @ Devcon 8</a></h3><p>A small morning room in Mumbai on Nov 2, with Lighter and RISEx: perp traders, builders, protocol teams and VCs over chai and breakfast, talking about where onchain trading goes next.</p></div>
+          <div class="tags"><span>Upcoming</span><span>Event</span></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="writing">
+    <div class="wrap">
+      <div class="sec-head"><h2>Writings</h2><span class="jp">かいたもの</span></div>
+      <ul class="projects">
+        <li class="proj">
+          <span class="yr">Oct 2025</span>
+          <div><h3><a href="https://medium.com/@sreya_yaapsyr/zero-knowledge-proofs-in-blockchain-d03ab8276369" target="_blank" rel="noopener">Zero Knowledge Proofs in Blockchain</a></h3><p>How public blockchains keep secrets, explained with your Netflix password.</p></div>
+          <div class="tags"><span>ZK</span></div>
+        </li>
+        <li class="proj">
+          <span class="yr">Dec 2024</span>
+          <div><h3><a href="https://medium.com/@sreya_yaapsyr/blockchain-in-the-seafood-i-2796051c70d0" target="_blank" rel="noopener">Blockchain in the Seafood Industry</a></h3><p>Tracing your grilled fish from the sea to your plate with blockchain.</p></div>
+          <div class="tags"><span>Supply chain</span></div>
+        </li>
+        <li class="proj">
+          <span class="yr">Apr 2024</span>
+          <div><h3><a href="https://medium.com/@sreya_yaapsyr/bitcoin-whitepaper-but-easier-473f7d23386d" target="_blank" rel="noopener">Bitcoin Whitepaper but Easier</a></h3><p>Satoshi's whitepaper, rewritten in plain words.</p></div>
+          <div class="tags"><span>Bitcoin</span></div>
+        </li>
+      </ul>
+      <p class="more"><a href="https://medium.com/@sreya_yaapsyr" target="_blank" rel="noopener">more words over on medium &nearr;</a><span>a follow would make totoro happy ♡</span></p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="sec-head"><h2>Timetable</h2><span class="jp">じこくひょう</span></div>
+      <p class="note">how to reach me</p>
+      <div class="tt-box">
+        <table class="timetable">
+          <thead><tr><th>Departs</th><th>Route</th><th>Destination</th></tr></thead>
+          <tbody>
+            <tr><td class="t">daily</td><td>X</td><td><a href="https://x.com/sreyayaar" target="_blank" rel="noopener">@sreyayaar</a></td></tr>
+            <tr><td class="t">fastest</td><td>Telegram</td><td><a href="https://t.me/sreyayaar" target="_blank" rel="noopener">@sreyayaar</a></td></tr>
+            <tr><td class="t">anytime</td><td>Email</td><td><a class="addr" href="mailto:sreyayaar@gmail.com">sreyayaar@gmail.com</a></td></tr>
+            <tr><td class="t">weekdays</td><td>LinkedIn</td><td><a href="https://www.linkedin.com/in/sreya-nair-06b089252/" target="_blank" rel="noopener">in/sreya-nair</a></td></tr>
+            <tr><td class="t">when it rains</td><td>Catbus</td><td>Shichikokuyama (no return service)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <pre id="soots" aria-hidden="true"></pre>
+    <p class="credit">Made for fun as a fan tribute to My Neighbor Totoro. Totoro &copy; Studio Ghibli.</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const stage = document.getElementById('stage');
+  const cv = document.getElementById('scene');
+  const ctx = cv.getContext('2d');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const mq = matchMedia('(max-width: 959px)');
+  const intro = document.querySelector('.intro');
+  let textEdge = 0;
+  const BG = '#0b1311';
+  const MONO = '"DM Mono", ui-monospace, monospace';
+
+  // Each material is one hue; brightness becomes both the glyph (sparse to dense) and its opacity.
+  const MAT = {
+    fur: [178, 190, 198], belly: [238, 228, 198], eye: [250, 248, 238], whisk: [226, 220, 200],
+    leaf: [128, 182, 96], vein: [204, 232, 156], umb: [112, 134, 164], rib: [176, 196, 220], handle: [200, 170, 124],
+    lamp: [246, 186, 98], post: [138, 124, 104], rain: [130, 166, 206], rainLamp: [240, 180, 100], splash: [190, 214, 238],
+    grass: [112, 162, 94], ground: [74, 108, 76], tree: [58, 92, 74], fly: [238, 232, 140],
+    soot: [104, 112, 108], mouth: [196, 78, 80], water: [96, 142, 172], star: [238, 162, 188]
+  };
+  const NAMES = Object.keys(MAT);
+  const M = {}; NAMES.forEach((k, i) => { M[k] = i; });
+  // Totoro, the umbrella and the bus stop get a higher opacity floor so their dim glyphs stay visible; glyphs are unchanged.
+  const FIGURE = new Set(['fur', 'belly', 'eye', 'whisk', 'leaf', 'vein', 'umb', 'rib', 'handle', 'lamp', 'post']);
+  const TONES = NAMES.map(k => {
+    const [r, g, b] = MAT[k], lo = FIGURE.has(k) ? 0.3 : 0.12;
+    return Array.from({ length: 8 }, (_, l) => `rgba(${r},${g},${b},${(lo + (1 - lo) * l / 7).toFixed(3)})`);
+  });
+  const RAMP = ' .,:;-=+*';
+  const buckets = Array.from({ length: NAMES.length * 8 }, () => []);
+
+  let W = 0, H = 0, dpr = 1, cw = 5, ch = 9, fs = 8, cols = 0, rows = 0, S = 200, ox = 0, oy = 0, gy = 0;
+  let bgCanvas = null;
+  const mouse = { x: -999, y: -999, on: false };
+  let drops = [], splashes = [], ripples = [], flies = [], soots = [];
+  // Totoro naps until woken: he yawns with his eyes shut, then looks around for a while and dozes off again
+  const AWAKE_FOR = 12;
+  let t = 0, roar = 0, awake = 0, blinkT = 0, nextBlink = 2.2, hover = false, visible = true, last = 0;
+  let PX0 = 0, PY0 = 0, PRX = 1, PRY = 1, lampX = 0, lampY = 0;
+  // the soot sprites can't be caught, but a konpeito on the grass wins them over: 'shy' -> 'offer' -> 'friends' -> 'shy'
+  const FRIENDS_FOR = 15;
+  let mode = 'shy', shyHinted = false, kx = 0, kLife = 0, offerT = 0, friendT = 0, followX = 0;
+  const sootR = () => mq.matches ? 8 : 10;
+  const kDefault = () => clamp(ox - 0.95 * S, 30, W - 30);
+  const SIGN = '「スレヤ前」';
+
+  // Scene geometry, in units of S with the origin at Totoro's middle (y points down)
+  const UCX = 0.1, UCY = -0.86, UR = 0.62;            // umbrella canopy
+  const SX = -0.78, SY = -0.62, SW = 0.19, SH = 0.12;  // bus stop sign
+  const CHEVRONS = [[-0.12, 0.02], [0, 0.02], [0.12, 0.02], [-0.18, 0.13], [-0.06, 0.13], [0.06, 0.13], [0.18, 0.13]];
+
+  const clamp = (v, a, b) => v < a ? a : v > b ? b : v;
+  const hash = (x, y) => { const h = Math.sin(x * 127.1 + y * 311.7) * 43758.5453; return h - Math.floor(h); };
+  const n1 = x => { const i = Math.floor(x), f = x - i, u = f * f * (3 - 2 * f); return hash(i, 7) * (1 - u) + hash(i + 1, 7) * u; };
+  const n2 = (x, y) => {
+    const xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi;
+    const u = xf * xf * (3 - 2 * xf), v = yf * yf * (3 - 2 * yf);
+    const a = hash(xi, yi), b = hash(xi + 1, yi), c = hash(xi, yi + 1), d = hash(xi + 1, yi + 1);
+    return a + (b - a) * u + (c - a) * v + (a - b - c + d) * u * v;
+  };
+  const ring = (v, n, speed) => { const f = ((v * n - t * speed) % 1 + 1) % 1; return Math.pow(1 - Math.abs(f - 0.5) * 2, 8); };
+  const lineChar = (dx, dy) => { let a = Math.atan2(-dy, dx) * 180 / Math.PI; if (a < 0) a += 180; return a < 22 || a > 158 ? '-' : a < 68 ? '/' : a < 112 ? '|' : '\\'; };
+
+  function canopy(X, Y) {
+    const ux = X - UCX, uy = Y - UCY, ud = Math.hypot(ux, uy * 1.15);
+    if (ud >= UR) return -1;
+    if (uy > 0.035 * Math.abs(Math.sin(ux / UR * Math.PI * 2.5))) return -1;
+    return ud;
+  }
+  const bodyRx = Y => 0.29 + 0.17 * clamp((Y + 0.45) / 0.95, 0, 1);
+  const bodyE = (X, Y) => { const rx = bodyRx(Y), by = Y - 0.05; return (X * X) / (rx * rx) + (by * by) / 0.3025; };
+  const inBody = (X, Y) => bodyE(X, Y) < 1;
+  function earE(X, Y) {
+    let best = 9;
+    for (const s of [-1, 1]) {
+      const ex = X - s * 0.16, ey = Y + 0.57, a = s * 0.22, ca = Math.cos(a), sa = Math.sin(a);
+      const qx = ex * ca + ey * sa, qy = -ex * sa + ey * ca;
+      best = Math.min(best, qx * qx / 0.003025 + qy * qy / 0.0225);
+    }
+    return best;
+  }
+  const LA = -0.28, LCA = Math.cos(LA), LSA = Math.sin(LA);
+  function leafQ(X, Y) { const lx = X + 0.01, ly = Y + 0.565; return [lx * LCA + ly * LSA, -lx * LSA + ly * LCA]; }
+  const leafE = (qx, qy) => qx * qx / 0.0169 + qy * qy / 0.0025;
+  const pawE = (X, Y) => ((X - 0.34) ** 2) / 0.0049 + ((Y + 0.06) ** 2) / 0.0036;
+  function inScene(X, Y) {
+    if (Math.abs(X - SX) < SW && Math.abs(Y - SY) < SH) return true;
+    const [qx, qy] = leafQ(X, Y);
+    return canopy(X, Y) >= 0 || inBody(X, Y) || earE(X, Y) < 1 || pawE(X, Y) < 1 || leafE(qx, qy) < 1;
+  }
+  function segD(X, Y, ax, ay, bx, by) {
+    const vx = bx - ax, vy = by - ay;
+    const k = clamp(((X - ax) * vx + (Y - ay) * vy) / (vx * vx + vy * vy), 0, 1);
+    return Math.hypot((X - ax - vx * k) * S / cw, (Y - ay - vy * k) * S / ch);
+  }
+  const cellAt = (X, Y) => {
+    const c = Math.floor((ox + X * S) / cw), r = Math.floor((oy + Y * S) / ch);
+    return (c < 0 || r < 0 || c >= cols || r >= rows) ? -1 : r * cols + c;
+  };
+  const inPuddle = (x, y) => ((x - PX0) / PRX) ** 2 + ((y - PY0) / PRY) ** 2 < 1;
+
+  function resize() {
+    const r = cv.getBoundingClientRect();
+    W = r.width; H = r.height;
+    if (!W || !H) return;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const mobile = mq.matches;
+    fs = mobile ? 7 : 8;
+    ctx.font = `${fs}px ${MONO}`;
+    cw = ctx.measureText('M').width || fs * 0.6;
+    ch = Math.round(fs * 1.15);
+    cols = Math.ceil(W / cw); rows = Math.ceil(H / ch);
+    gy = H * 0.89;
+    if (mobile) {
+      textEdge = 0;
+      S = Math.min(H * 0.4, W * 0.52);
+      ox = W * 0.57;
+    } else {
+      // line the hero up with the content column of the sections below: the text starts at its left edge
+      // and the scene (bus stop to umbrella, 1.77 S wide) ends at its right edge
+      const wrap = document.querySelector('main .wrap'), wr = wrap.getBoundingClientRect(), ws = getComputedStyle(wrap);
+      const colLeft = wr.left + parseFloat(ws.paddingLeft) - r.left, colRight = wr.right - parseFloat(ws.paddingRight) - r.left;
+      const left0 = parseFloat(getComputedStyle(intro).paddingLeft);
+      const textW = Math.max(...[...intro.children].map(el => el.getBoundingClientRect().right)) - r.left - left0;
+      const gap = 64;
+      S = Math.max(120, Math.min(H * 0.42, (colRight - colLeft - textW - gap) / 1.77));
+      intro.parentElement.style.setProperty('--hero-left', `${colLeft}px`);
+      textEdge = colLeft + textW;
+      ox = colRight - 0.8 * S;
+    }
+    oy = gy - 0.6 * S;
+    PX0 = ox - 0.1 * S; PY0 = gy + (H - gy) * 0.52; PRX = 0.85 * S; PRY = (H - gy) * 0.36;
+    lampX = ox + SX * S; lampY = oy + (SY - SH - 0.09) * S;
+    buildBackground();
+    initParticles(mobile);
+    if (reduce) { update(0); draw(); }
+  }
+
+  // The forest and the ground do not move, so they are drawn once per resize.
+  function buildBackground() {
+    bgCanvas = document.createElement('canvas');
+    bgCanvas.width = cv.width; bgCanvas.height = cv.height;
+    const b = bgCanvas.getContext('2d');
+    b.setTransform(dpr, 0, 0, dpr, 0, 0);
+    b.fillStyle = BG; b.fillRect(0, 0, W, H);
+    b.font = `${fs}px ${MONO}`; b.textBaseline = 'middle';
+    const tone = (m, v) => TONES[M[m]][clamp(Math.round(v * 7), 1, 7)];
+    for (let r = 0; r < rows; r++) {
+      const py = r * ch + ch * 0.5;
+      for (let c = 0; c < cols; c++) {
+        const px = c * cw + cw * 0.5;
+        // keep a thin clear margin of night around the figures so their silhouettes read
+        const X = (px - ox) / S, Y = (py - oy) / S, mx = cw * 1.5 / S, my = ch * 1.2 / S;
+        if (inScene(X, Y) || inScene(X - mx, Y) || inScene(X + mx, Y) || inScene(X, Y - my) || inScene(X, Y + my)) continue;
+        if (py > gy) {
+          if (inPuddle(px, py)) continue;
+          const k = hash(c, r);
+          if (k < 0.5) { b.fillStyle = tone('ground', 0.2 + k * 0.6); b.fillText(k < 0.2 ? '.' : k < 0.38 ? ',' : ':', c * cw, py); }
+          continue;
+        }
+        const top = H * (0.05 + 0.28 * n1(px * 0.004 + 2) + 0.1 * n1(px * 0.02));
+        if (py < top) {
+          if (hash(c, r) < 0.025) { b.fillStyle = tone('tree', 0.25); b.fillText('.', c * cw, py); }
+          continue;
+        }
+        const depth = (py - top) / (gy - top);
+        const fol = n2(px * 0.016, py * 0.026) * 0.65 + n2(px * 0.06, py * 0.09) * 0.35;
+        const trunk = n1(px * 0.035 + 9) > 0.8 && depth > 0.3;
+        let v = trunk ? 0.32 + 0.12 * hash(c, r) : fol * 0.55 + depth * 0.12 - 0.16;
+        v += (hash(c, r) - 0.5) * 0.1;
+        if (v < 0.1) continue;
+        b.fillStyle = tone('tree', v * 0.9);
+        b.fillText(trunk ? '|' : RAMP[clamp(Math.round(v * 8), 1, 6)], c * cw, py);
+      }
+    }
+  }
+
+  function newDrop(anywhere) {
+    return { x: Math.random() * (W + 120) - 60, y: anywhere ? Math.random() * gy : -Math.random() * H * 0.3, v: 440 + Math.random() * 360, px: 0 };
+  }
+  function initParticles(mobile) {
+    drops = Array.from({ length: Math.round(W * H / (mobile ? 2600 : 2200)) }, () => newDrop(true));
+    splashes = []; ripples = [];
+    flies = Array.from({ length: mobile ? 7 : 14 }, () => ({ sx: Math.random() * W, sy: H * (0.22 + Math.random() * 0.58), ph: Math.random() * 10 }));
+    soots = [-0.62, -0.3, 0.48, 0.68].map((hx, i) => ({ home: ox + hx * S, x: ox + hx * S, vx: 0, ph: i * 1.7, star: i === 1, hop: 0 }));
+  }
+
+  function roarEnv() {
+    if (roar <= 0) return 0;
+    return Math.sin(Math.min(1, (1 - roar) * 5) * Math.PI / 2) * Math.min(1, roar * 3);
+  }
+
+  function update(dt) {
+    nextBlink -= dt;
+    if (nextBlink <= 0) { blinkT = 0.18; nextBlink = 2.4 + Math.random() * 3; }
+    if (blinkT > 0) blinkT -= dt;
+    roar = Math.max(0, roar - dt / 1.8);
+    if (awake > 0) { awake -= dt; if (awake <= 0) sleep(); }
+
+    const wind = -30 + 25 * Math.sin(t * 0.25);
+    const R = mq.matches ? 60 : 95;
+    const env = roarEnv();
+    const mX = ox, mY = oy - 0.13 * S;
+    for (let i = 0; i < drops.length; i++) {
+      const d = drops[i];
+      d.y += d.v * dt; d.x += (wind + d.px) * dt; d.px *= 0.9;
+      if (mouse.on) {
+        const dx = d.x - mouse.x, dy = d.y - mouse.y, dist = Math.hypot(dx, dy);
+        if (dist < R && dist > 0.01) d.x += dx / dist * (1 - dist / R) * R * 0.35;
+      }
+      if (env > 0.2) {
+        const dx = d.x - mX, dy = d.y - mY, dist = Math.hypot(dx, dy) || 1;
+        if (dist < S * 2.4) { d.x += dx / dist * 700 * dt * env; d.y += dy / dist * 300 * dt * env; }
+      }
+      const X = (d.x - ox) / S, Y = (d.y - oy) / S;
+      const groundAt = gy + Math.random() * (H - gy);
+      if (canopy(X, Y) >= 0) { splashes.push({ x: d.x, y: d.y, life: 0.32, up: true }); drops[i] = newDrop(false); }
+      else if (inBody(X, Y) || earE(X, Y) < 1) { drops[i] = newDrop(false); }
+      else if (d.y > groundAt) {
+        if (inPuddle(d.x, d.y)) { if (ripples.length < 36) ripples.push({ x: d.x, y: d.y, r: 0, life: 1 }); }
+        else splashes.push({ x: d.x, y: d.y, life: 0.22, up: false });
+        drops[i] = newDrop(false);
+      }
+      else if (d.x < -80 || d.x > W + 80) { drops[i] = newDrop(false); }
+    }
+    for (const s of splashes) { s.life -= dt; if (s.up) { s.y -= 40 * dt; s.x += (s.x < ox + UCX * S ? -60 : 60) * dt; } }
+    splashes = splashes.filter(s => s.life > 0);
+    if (splashes.length > 400) splashes.splice(0, splashes.length - 400);
+    for (const p of ripples) { p.r += 34 * dt; p.life -= dt * 0.9; }
+    ripples = ripples.filter(p => p.life > 0);
+
+    const R0 = sootR(), SLOTS = [-1, 1, -2, 2];
+    soots.forEach((s, i) => {
+      let target = s.home + Math.sin(t * 0.45 + s.ph) * S * 0.06, pull = 3;
+      if (mode === 'offer') {
+        // one at a time they creep up to the konpeito and sit around it
+        if (t - offerT > i * 0.7) { target = kx + SLOTS[i] * R0 * 2.4; pull = 1.2; }
+        if (!s.friend && t - offerT > i * 0.7 && Math.abs(s.x - target) < 6) { s.friend = true; s.heart = 1; }
+      } else if (mode === 'friends') {
+        target = followX + SLOTS[i] * R0 * 2.6; pull = 2;
+      } else {
+        // they dart away from a cursor or finger that gets close, and leap back over it when cornered, so they can never be caught
+        const dx = s.x - mouse.x;
+        if (mouse.on && Math.abs(dx) < 130 && Math.abs(mouse.y - gy) < 170) { s.vx += Math.sign(dx || 1) * 2200 * dt; s.scare = 1; escaped(); }
+      }
+      s.vx += (target - s.x) * pull * dt; s.vx *= 0.92;
+      if (mode === 'offer') s.vx = clamp(s.vx, -90, 90);
+      s.x += s.vx * dt;
+      if (mode === 'shy' && (s.x < 14 || s.x > W - 14)) { s.x = clamp(s.x, 14, W - 14); s.vx = (s.x < W / 2 ? 1 : -1) * 1300; s.scare = 1.6; }
+      s.x = clamp(s.x, 14, W - 14);
+      s.scare = Math.max(0, (s.scare || 0) - dt * 2);
+      s.heart = Math.max(0, (s.heart || 0) - dt * 0.5);
+      s.hop = mode === 'friends' ? Math.abs(Math.sin(t * 9 + s.ph)) * 1.2
+        : Math.abs(Math.sin(t * 7 + s.ph)) * (Math.abs(s.vx) > 25 ? 1 : 0.3) + s.scare * 1.6;
+    });
+    if (mode === 'offer' && soots.length && soots.every(s => s.friend)) {
+      mode = 'friends'; friendT = t; kLife = 1.5; followX = kx;
+      setHint(`You made ${soots.length} tiny friends ♡`);
+    } else if (mode === 'friends') {
+      kLife = Math.max(0, kLife - dt);
+      if (t - friendT > FRIENDS_FOR) { mode = 'shy'; kLife = 0; soots.forEach(s => { s.friend = false; }); setHint(''); }
+    }
+  }
+
+  function draw() {
+    for (const b of buckets) b.length = 0;
+    const putXY = (x, y, v, m, chr) => {
+      const l = clamp(Math.round(v * 7), 1, 7);
+      buckets[M[m] * 8 + l].push(chr || RAMP[clamp(Math.round(v * 8), 1, 8)], x, y);
+    };
+    const put = (c, r, v, m, chr) => putXY(c * cw, r * ch + ch * 0.5, v, m, chr);
+
+    const cellU = cw / S, cellV = ch / S;
+    const open = awake > 0 && roar < 0.35 && blinkT <= 0;
+    const env = roarEnv();
+    const ER = Math.max(0.068, 1.6 * cellU), ERy = Math.max(0.068, 1.1 * cellV);
+
+    // pupils look toward the cursor
+    const pup = [-1, 1].map(s => {
+      const ex = s * 0.13, ey = -0.27;
+      let dx = Math.sin(t * 0.3) * 0.4, dy = 0.3;
+      if (mouse.on) {
+        const vx = mouse.x - (ox + ex * S), vy = mouse.y - (oy + ey * S), m = Math.hypot(vx, vy) || 1;
+        dx = vx / m; dy = vy / m;
+      }
+      return [ex + dx * ER * 0.35, ey + dy * ERy * 0.3];
+    });
+    const shine = new Set(pup.map(([x, y]) => cellAt(x - ER * 0.18, y - ERy * 0.2)));
+
+    const xMin = SX - SW - 0.05, xMax = UCX + UR + 0.05;
+    const c0 = Math.max(0, Math.floor((ox + xMin * S) / cw)), c1 = Math.min(cols - 1, Math.ceil((ox + xMax * S) / cw));
+    const rTop = Math.max(0, Math.floor((oy - 1.48 * S) / ch));
+    const rGrass = Math.max(0, Math.floor((gy - 4.2 * ch) / ch));
+
+    for (let r = rTop; r < rows; r++) {
+      const py = r * ch + ch * 0.5, Y = (py - oy) / S;
+      const full = r >= rGrass;
+      const cs = full ? 0 : c0, ce = full ? cols - 1 : c1;
+      for (let c = cs; c <= ce; c++) {
+        const px = c * cw + cw * 0.5, X = (px - ox) / S;
+        const inBox = c >= c0 && c <= c1;
+
+        if (inBox) {
+          // bus stop sign and post
+          const sx = X - SX, sy = Y - SY;
+          if (Math.abs(sx) < SW && Math.abs(sy) < SH) {
+            const eX = Math.abs(sx) > SW - cellU, eY = Math.abs(sy) > SH - cellV;
+            if (eX && eY) put(c, r, 0.9, 'lamp', '+');
+            else if (eY) put(c, r, 0.85, 'lamp', '-');
+            else if (eX) put(c, r, 0.85, 'lamp', '|');
+            else if (hash(c, r) < 0.3) put(c, r, 0.2, 'lamp', '.');
+            continue;
+          }
+          if (Math.abs(sx) < cellU * 0.5 && Y > SY + SH && Y < 0.6) { put(c, r, 0.55, 'post', '|'); continue; }
+
+          // umbrella handle
+          if (Y > UCY && Y < -0.06 && segD(X, Y, UCX, UCY, 0.34, -0.06) < 0.55) {
+            put(c, r, 0.75, 'handle', lineChar(0.24 * S / cw, 0.8 * S / ch)); continue;
+          }
+
+          // umbrella canopy
+          const ud = canopy(X, Y);
+          if (ud >= 0) {
+            const ux = X - UCX, uy = Y - UCY;
+            const edge = 0.035 * Math.abs(Math.sin(ux / UR * Math.PI * 2.5));
+            if (uy > edge - cellV * 0.9 || ud > UR - cellU * 1.1) { put(c, r, 0.9, 'rib', uy > edge - cellV * 0.9 ? '~' : lineChar(-uy * 1.15, ux)); continue; }
+            let rib = 0;
+            for (let k = 1; k <= 5 && !rib; k++) {
+              const a = -Math.PI * k / 6, ex = Math.cos(a) * UR, ey = Math.sin(a) * UR / 1.15;
+              if (segD(X, Y, UCX, UCY, UCX + ex, UCY + ey) < 0.5) rib = k;
+            }
+            if (rib) { const a = -Math.PI * rib / 6; put(c, r, 0.8, 'rib', lineChar(Math.cos(a) * S / cw, Math.sin(a) / 1.15 * S / ch)); continue; }
+            const p = ud / UR;
+            const v = 0.14 + 0.32 * (0.5 - ux / (2 * UR)) * (1 - p * 0.4) + 0.3 * ring(p, 4, 0.08) + 0.06 * Math.sin(ux * 30 + t * 3) + (hash(c, r) - 0.5) * 0.08;
+            if (v > 0.12) put(c, r, v, 'umb');
+            continue;
+          }
+
+          // the leaf on Totoro's head, with a midrib and side veins
+          const [qx, qy] = leafQ(X, Y), le = leafE(qx, qy);
+          if (le < 1) {
+            if (Math.abs(qy) < cellV * 0.45) { put(c, r, 0.95, 'vein', '-'); continue; }
+            const vein = Math.abs(((qx * 16 + Math.abs(qy) * 26) % 1 + 1) % 1 - 0.5) < 0.09;
+            if (vein) { put(c, r, 0.7, 'vein', qy < 0 ? '\\' : '/'); continue; }
+            put(c, r, 0.3 + 0.35 * (1 - le) - qy * 3 + (hash(c, r) - 0.5) * 0.1, 'leaf');
+            continue;
+          }
+
+          // whiskers poke out past the body
+          if (Math.abs(X) > 0.13 && Math.abs(X) < 0.46 && Y > -0.33 && Y < -0.1) {
+            const s = Math.sign(X);
+            let hit = -1;
+            for (let k = 0; k < 3 && hit < 0; k++) if (segD(X, Y, s * 0.15, -0.23 + k * 0.03, s * 0.44, -0.28 + k * 0.065) < 0.42) hit = k;
+            if (hit >= 0) { put(c, r, 0.8, 'whisk', lineChar(s * 0.29 * S / cw, (-0.05 + hit * 0.035) * S / ch)); continue; }
+          }
+
+          // Totoro
+          const db = bodyE(X, Y), de = earE(X, Y), dp = pawE(X, Y);
+          if (db < 1 || de < 1 || dp < 1) {
+            // eyes: white rings, dark pupils left as empty cells
+            let eye = false;
+            for (let i = 0; i < 2 && !eye; i++) {
+              const s = i ? 1 : -1, ex = X - s * 0.13, ey = Y + 0.27;
+              const e = (ex / ER) ** 2 + (ey / ERy) ** 2;
+              if (e < 1) {
+                eye = true;
+                if (!open) { if (Math.abs(ey) < cellV * 0.5) put(c, r, 0.85, 'eye', '-'); }
+                else {
+                  const [pxu, pyu] = pup[i];
+                  const pe = ((X - pxu) / (ER * 0.58)) ** 2 + ((Y - pyu) / (ERy * 0.62)) ** 2;
+                  if (pe < 1) { if (shine.has(r * cols + c)) put(c, r, 1, 'eye', '.'); }
+                  else put(c, r, e > 0.6 ? 1 : 0.9, 'eye', e > 0.6 ? '*' : '+');
+                }
+              }
+            }
+            if (eye) continue;
+            // nose: a small dark gap
+            if ((X / 0.032) ** 2 + ((Y + 0.335) / 0.016) ** 2 < 1) continue;
+            // roaring mouth
+            if (env > 0.05) {
+              const mrx = 0.26 * (0.6 + 0.4 * env), mry = 0.12 * env, my = Y + 0.12;
+              if ((X / mrx) ** 2 + (my / mry) ** 2 < 1) {
+                if (my < -mry * 0.45) put(c, r, 0.95, 'eye', 'v'); else put(c, r, 0.45 + 0.2 * hash(c, r), 'mouth');
+                continue;
+              }
+            }
+            // belly with grey chevrons
+            const dbl = (X * X) / 0.09 + ((Y - 0.24) ** 2) / 0.0961;
+            if (de >= 1 && dbl < 1) {
+              let chev = '';
+              for (const [cx, cy] of CHEVRONS) {
+                if (segD(X, Y, cx, cy, cx - 0.045, cy + 0.035) < 0.5) { chev = '/'; break; }
+                if (segD(X, Y, cx, cy, cx + 0.045, cy + 0.035) < 0.5) { chev = '\\'; break; }
+              }
+              if (chev) { put(c, r, 0.62, 'fur', chev); continue; }
+              const nb = Math.sqrt(dbl);
+              put(c, r, 0.26 + 0.3 * (1 - nb) + 0.22 * ring(nb, 5, 0.05) + 0.07 * Math.sin(X * 30 + t * 1.4) + (hash(c, r) - 0.5) * 0.1, 'belly');
+              continue;
+            }
+            // fur: soft shading, contour lines that drift outward, a bright rim
+            const nd = Math.sqrt(Math.min(db < 1 ? db : de < 1 ? de : dp, 1));
+            const shade = clamp(0.55 - X * 0.55 - (Y + 0.1) * 0.35, 0, 1);
+            const rim = nd > 0.88 ? (nd - 0.88) * 5 : 0;
+            const v = 0.1 + 0.32 * shade + 0.26 * ring(nd, 6, 0.06) + rim + 0.07 * Math.sin(Y * 46 - t * 2.6 + X * 14) + (hash(c, r) - 0.5) * 0.12;
+            put(c, r, v, 'fur');
+            continue;
+          }
+        }
+
+        // grass
+        if (py <= gy) {
+          if (!full) continue;
+          const gh = (0.8 + 2.2 * n1(px * 0.05) + 0.9 * n1(px * 0.21)) * ch;
+          if (py > gy - gh) {
+            const f = (gy - py) / gh, sway = n1(px * 0.07 + t * 0.6 + r * 0.2);
+            const chr = f > 0.66 ? (sway < 0.4 ? '/' : sway < 0.6 ? "'" : '\\') : (sway < 0.4 ? '/' : sway < 0.6 ? '|' : '\\');
+            put(c, r, 0.3 + 0.45 * (1 - f) * hash(c, 5) + 0.15, 'grass', chr);
+          }
+          continue;
+        }
+
+        // the puddle: reflections of Totoro and the lamp, plus ripples
+        if (inPuddle(px, py)) {
+          const sy = gy - (py - gy) * 2.6, sx = px + Math.sin(py * 0.35 + t * 3) * cw * 0.8;
+          const RX = (sx - ox) / S, RY = (sy - oy) / S;
+          let v = 0.1 + 0.06 * Math.sin(px * 0.05 + t * 1.5), m = 'water', chr = hash(c, r) < 0.5 ? '-' : '~';
+          if (inBody(RX, RY) || earE(RX, RY) < 1) { v = 0.32; m = 'fur'; }
+          else if (canopy(RX, RY) >= 0) { v = 0.26; m = 'umb'; }
+          if (Math.abs(sx - lampX) < cw * 1.8) { v = 0.4 + 0.2 * Math.sin(py + t * 5); m = 'lamp'; }
+          for (const p of ripples) {
+            const d = Math.hypot(px - p.x, (py - p.y) * 2.6);
+            if (Math.abs(d - p.r) < cw * 0.9) { v = Math.max(v, 0.3 + 0.6 * p.life); m = 'splash'; chr = d < cw * 2 ? 'o' : '~'; break; }
+          }
+          put(c, r, v, m, chr);
+        }
+      }
+    }
+
+    // lamp over the sign
+    const lc = cellAt(SX, SY - SH - 0.09);
+    if (lc >= 0) put(lc % cols, Math.floor(lc / cols), 1, 'lamp', '*');
+
+    // rain: short streaks, brightest at the head; never drawn over the figures, and softer behind the text
+    const covered = (c, r) => inScene((c * cw + cw * 0.5 - ox) / S, (r * ch + ch * 0.5 - oy) / S);
+    for (const d of drops) {
+      const c = Math.floor(d.x / cw), r = Math.floor(d.y / ch);
+      if (c < 0 || r < 0 || c >= cols || r >= rows) continue;
+      const nearLamp = Math.hypot(d.x - lampX, d.y - lampY) < S * 0.45;
+      const m = nearLamp ? 'rainLamp' : 'rain';
+      const head = Math.abs(d.px) > 60 ? (d.px > 0 ? '\\' : '/') : '|';
+      const v = (0.45 + (d.v - 440) / 900) * (d.x < textEdge + 24 ? 0.55 : 1);
+      if (!covered(c, r)) put(c, r, v, m, head);
+      if (r > 0 && !covered(c, r - 1)) put(c, r - 1, v * 0.6, m, ':');
+      if (r > 1 && d.v > 640 && !covered(c, r - 2)) put(c, r - 2, v * 0.35, m, '.');
+    }
+    for (const s of splashes) {
+      const c = Math.floor(s.x / cw), r = Math.floor(s.y / ch);
+      if (c < 0 || r < 0 || c >= cols || r >= rows) continue;
+      put(c, r, 0.4 + s.life * 1.6, 'splash', s.up ? (s.life > 0.16 ? "'" : '.') : (s.life > 0.11 ? 'o' : '.'));
+    }
+
+    // fireflies with a faint halo
+    for (const f of flies) {
+      const x = f.sx + 34 * Math.sin(t * 0.3 + f.ph) + 18 * Math.sin(t * 0.9 + f.ph * 3);
+      const y = f.sy + 16 * Math.sin(t * 0.5 + f.ph * 2);
+      if (inScene((x - ox) / S, (y - oy) / S)) continue;
+      const glow = 0.5 + 0.5 * Math.sin(t * 2.2 + f.ph);
+      if (glow < 0.2) continue;
+      const c = Math.floor(x / cw), r = Math.floor(y / ch);
+      put(c, r, glow, 'fly', '*');
+      put(c - 1, r, glow * 0.4, 'fly', '.'); put(c + 1, r, glow * 0.4, 'fly', '.');
+    }
+
+    // soot sprites: fuzzy balls of characters with two white eyes
+    const FUZZ = '*#%&';
+    const R0 = sootR();
+    for (const s of soots) {
+      const x = s.x, y = gy - R0 * 1.1 - s.hop * 10;
+      s.y = y;
+      const eyes = new Set([`${Math.round((x - R0 * 0.38) / cw)},${Math.floor(y / ch)}`, `${Math.round((x + R0 * 0.38) / cw)},${Math.floor(y / ch)}`]);
+      for (let r = Math.floor((y - R0 * 1.4) / ch); r <= Math.floor((y + R0 * 1.4) / ch); r++) {
+        for (let c = Math.floor((x - R0 * 1.4) / cw); c <= Math.ceil((x + R0 * 1.4) / cw); c++) {
+          const key = `${c},${r}`;
+          if (eyes.has(key)) { put(c, r, 1, 'eye', 'o'); continue; }
+          const d = Math.hypot(c * cw + cw * 0.5 - x, r * ch + ch * 0.5 - y);
+          if (d < R0 * (0.85 + 0.4 * hash(c + Math.floor(t * 12), r))) put(c, r, d < R0 * 0.6 ? 0.6 : 0.35, 'soot', FUZZ[Math.floor(hash(c, r + Math.floor(t * 9)) * 4)]);
+        }
+      }
+      if (s.star) put(Math.round(x / cw), Math.floor((y - R0 * 1.8) / ch), 0.95, 'star', '*');
+    }
+
+    // compose: background, lamp glow, then every glyph grouped by color
+    ctx.drawImage(bgCanvas, 0, 0, W, H);
+    // on desktop the lamp light spills a little further, toward the text
+    const glowR = S * (textEdge ? 1.05 : 0.7);
+    const g = ctx.createRadialGradient(lampX, lampY, 0, lampX, lampY, glowR);
+    g.addColorStop(0, 'rgba(246,186,98,0.15)'); g.addColorStop(1, 'rgba(246,186,98,0)');
+    ctx.fillStyle = g; ctx.fillRect(lampX - glowR, lampY - glowR, glowR * 2, glowR * 2);
+    ctx.font = `${fs}px ${MONO}`; ctx.textBaseline = 'middle'; ctx.textAlign = 'left';
+    // snap glyphs to device pixels so the small characters render crisp instead of blurred
+    const snap = v => Math.round(v * dpr) / dpr;
+    for (let i = 0; i < buckets.length; i++) {
+      const a = buckets[i];
+      if (!a.length) continue;
+      ctx.fillStyle = TONES[Math.floor(i / 8)][i % 8];
+      for (let j = 0; j < a.length; j += 3) ctx.fillText(a[j], snap(a[j + 1]), snap(a[j + 2]));
+    }
+
+    // sign lettering, shrunk to fit inside the sign; it hums faintly like an old sign
+    const label = SIGN, SIGN_FONT = '"Mochiy Pop One", "Zen Maru Gothic", sans-serif';
+    let size = Math.min(18, 0.08 * S);
+    ctx.font = `${size}px ${SIGN_FONT}`;
+    const fitW = SW * 2 * S * 0.86, tw = ctx.measureText(label).width;
+    if (tw > fitW) { size *= fitW / tw; ctx.font = `${size}px ${SIGN_FONT}`; }
+    let signA = 0.94 + 0.06 * Math.sin(t * 13) * Math.sin(t * 3.1);
+    ctx.textAlign = 'center';
+    ctx.fillStyle = `rgba(246,186,98,${signA.toFixed(3)})`;
+    ctx.fillText(label, ox + SX * S, oy + SY * S);
+
+    // the konpeito on the grass, which fades as it is nibbled, and a heart over each new friend
+    if (mode === 'offer' || kLife > 0) {
+      const a = mode === 'offer' ? 1 : kLife / 1.5;
+      const ky = gy - sootR() * 1.3, kg = ctx.createRadialGradient(kx, ky, 0, kx, ky, sootR() * 3);
+      kg.addColorStop(0, `rgba(234,160,185,${(0.35 * a).toFixed(3)})`); kg.addColorStop(1, 'rgba(234,160,185,0)');
+      ctx.fillStyle = kg; ctx.fillRect(kx - sootR() * 3, ky - sootR() * 3, sootR() * 6, sootR() * 6);
+      ctx.font = `${Math.round(sootR() * 2.6)}px sans-serif`;
+      ctx.fillStyle = `rgba(240,170,195,${(a * (0.85 + 0.15 * Math.sin(t * 5))).toFixed(3)})`;
+      ctx.fillText('★', kx, ky);
+    }
+    ctx.font = `${Math.round(sootR() * 2)}px sans-serif`;
+    for (const s of soots) {
+      if (!s.heart) continue;
+      ctx.fillStyle = `rgba(234,160,185,${Math.min(1, s.heart * 1.5).toFixed(3)})`;
+      ctx.fillText('♡', s.x, s.y - sootR() * 2.2 - (1 - s.heart) * 16);
+    }
+
+    // while he naps, z's drift up from beside his head, between him and the sign
+    if (awake <= 0) {
+      ctx.textAlign = 'left';
+      for (let k = 0; k < 3; k++) {
+        const p = ((t * 0.28 + k / 3) % 1 + 1) % 1;
+        const a = Math.sin(p * Math.PI) * 0.9;
+        ctx.font = `${Math.round(fs * (1.1 + p * 1.3))}px ${MONO}`;
+        ctx.fillStyle = `rgba(226,220,200,${a.toFixed(3)})`;
+        ctx.fillText(p < 0.5 ? 'z' : 'Z', ox + (-0.3 - p * 0.16 + 0.015 * Math.sin(t * 2 + k)) * S, oy + (-0.42 - p * 0.3) * S);
+      }
+    }
+  }
+
+  function frame(now) {
+    requestAnimationFrame(frame);
+    if (now - last < 33) return;
+    // checked here rather than with an observer, which can miss the page being revealed inside a frame
+    const sr = stage.getBoundingClientRect();
+    visible = sr.bottom > 0 && sr.top < (window.innerHeight || document.documentElement.clientHeight);
+    if (!bgCanvas || sr.width !== W) { if (sr.width && sr.height) resize(); last = now; return; }
+    if (!visible) return;
+    const dt = Math.min((now - last) / 1000, 0.05);
+    last = now; t += dt;
+    update(dt); draw();
+  }
+
+  function overTotoro(x, y) {
+    const X = (x - ox) / S, Y = (y - oy) / S;
+    return (X / 0.45) ** 2 + ((Y + 0.05) / 0.68) ** 2 < 1;
+  }
+  const wakeBtn = document.getElementById('roarBtn'), konBtn = document.getElementById('konBtn'), napHint = document.getElementById('napHint');
+  // the konpeito story can take over the hint line; otherwise it says whether Totoro is napping
+  let hintMsg = '';
+  function setHint(msg) {
+    hintMsg = msg;
+    const text = msg || (awake > 0 ? 'He\'s up. Try to catch a soot sprite.' : 'He\'s napping. Try to catch a soot sprite.');
+    napHint.innerHTML = text.replace('soot', 's<span class="soot-oo">oo</span>t');
+  }
+  // the first time one gets away, suggest the konpeito
+  function escaped() {
+    if (shyHinted || reduce) return;
+    shyHinted = true; konBtn.hidden = false;
+    setHint('Too quick! They\'re shy… maybe offer a konpeito?');
+  }
+  function offer(x) {
+    if (mode === 'friends') return;
+    if (mode === 'shy') { offerT = t; soots.forEach(s => { s.friend = false; }); }
+    mode = 'offer'; kx = clamp(x, 30, W - 30);
+    setHint('Hold still, they\'re curious…');
+  }
+  konBtn.addEventListener('click', () => offer(kDefault()));
+  function wake() {
+    // with reduced motion there is no yawn to play, so his eyes simply open
+    roar = reduce ? 0 : 1; blinkT = 0; awake = AWAKE_FOR;
+    wakeBtn.textContent = 'Let him nap';
+    setHint(hintMsg);
+    if (reduce) { update(0); draw(); }
+  }
+  function sleep() {
+    awake = 0; roar = 0;
+    wakeBtn.textContent = 'Wake Totoro';
+    setHint(hintMsg);
+    if (reduce) { update(0); draw(); }
+  }
+  stage.addEventListener('pointermove', e => {
+    const r = cv.getBoundingClientRect();
+    mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; mouse.on = true;
+    followX = mouse.x;
+    const h = overTotoro(mouse.x, mouse.y);
+    if (h && !hover && awake > 0) blinkT = 0.2;
+    hover = h; stage.style.cursor = h ? 'pointer' : '';
+  });
+  // a tap scatters any soot sprite near it; while a konpeito is out, a tap on the grass moves it there instead
+  stage.addEventListener('pointerdown', e => {
+    const r = cv.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    followX = x;
+    if (mode === 'offer') { if (!overTotoro(x, y)) offer(x); return; }
+    if (mode === 'friends') return;
+    let near = false;
+    for (const s of soots) if (Math.abs(s.x - x) < 130) { s.vx += Math.sign(s.x - x || 1) * 600; s.scare = 1.6; near = true; }
+    if (near) escaped();
+  });
+  stage.addEventListener('pointerleave', () => { mouse.on = false; hover = false; stage.style.cursor = ''; });
+  stage.addEventListener('click', e => {
+    const r = cv.getBoundingClientRect();
+    if (overTotoro(e.clientX - r.left, e.clientY - r.top)) wake();
+  });
+  wakeBtn.addEventListener('click', () => awake > 0 ? sleep() : wake());
+
+  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(resize, 120); });
+  // the page can load before its frame has a size (e.g. in a background tab), so also redraw once the stage gets one
+  if (window.ResizeObserver) new ResizeObserver(() => { if (!bgCanvas || cv.getBoundingClientRect().width !== W) { clearTimeout(rt); rt = setTimeout(resize, 120); } }).observe(stage);
+  resize();
+  if (!reduce) requestAnimationFrame(frame);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(resize);
+
+  // footer: soot sprites carrying konpeito across the page
+  const pre = document.getElementById('soots');
+  let tick = 0;
+  function sootRow() {
+    const L = Math.max(16, Math.floor(pre.clientWidth / 8.6));
+    const lines = [[], [], []].map(() => Array(L).fill(' '));
+    const n = Math.max(2, Math.floor(L / 14));
+    for (let i = 0; i < n; i++) {
+      const p = ((i * Math.floor(L / n) + tick) % (L + 6)) - 4;
+      const up = (tick + i * 2) % 4 < 2 ? 0 : 1;
+      const fz = j => '*#%&'[(tick * 3 + i + j) % 4];
+      const set = (row, col, chr, cls) => { if (row >= 0 && row < 3 && col >= 0 && col < L) lines[row][col] = cls ? `<span class="${cls}">${chr}</span>` : chr; };
+      if (i % 2 === 0) set(up - 1 + 1 - 1 + (up ? 0 : 0), p + 1, '*', 's');
+      for (let j = 0; j < 4; j++) set(up, p + j, fz(j));
+      set(up + 1, p, fz(1)); set(up + 1, p + 1, 'o', 'e'); set(up + 1, p + 2, 'o', 'e'); set(up + 1, p + 3, fz(2));
+    }
+    pre.innerHTML = lines.map(l => l.join('')).join('\n');
+  }
+  sootRow();
+  if (!reduce) setInterval(() => { tick++; sootRow(); }, 160);
+})();
+</script>
+
+</body>
+</html>
